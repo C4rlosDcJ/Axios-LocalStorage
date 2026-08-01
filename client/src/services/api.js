@@ -4,8 +4,13 @@ import axios from 'axios';
  * CONFIGURACIÓN CENTRALIZADA DE AXIOS
  * Instancia del cliente HTTP apuntando a la URL base del servidor backend.
  */
+const rawBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+// Normalizar URL para evitar errores 404 por falta del prefijo /api o barras inclinadas al final
+const cleanBaseUrl = rawBaseUrl.replace(/\/+$/, '');
+const baseURL = cleanBaseUrl.endsWith('/api') ? cleanBaseUrl : `${cleanBaseUrl}/api`;
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:4000/api',
+  baseURL,
   timeout: 8000,
   headers: {
     'Content-Type': 'application/json'
