@@ -1,0 +1,13 @@
+{
+  "name": "app-backend",
+  "version": "1.0.0",
+  "description": "Backend API para aplicación demostrativa de Axios y LocalStorage",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}
