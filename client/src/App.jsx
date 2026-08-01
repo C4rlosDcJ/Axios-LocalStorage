@@ -71,7 +71,13 @@ export default function App() {
       setUsername('');
       setPassword('');
     } catch (err) {
-      setError(err.response?.data?.error || 'Error al procesar la solicitud.');
+      if (err.response?.data?.error) {
+        setError(err.response.data.error);
+      } else if (err.code === 'ERR_NETWORK' || !err.response) {
+        setError('Error de conexión con el servidor. Verifique VITE_API_URL o la red.');
+      } else {
+        setError('Error al procesar la solicitud.');
+      }
     } finally {
       setLoading(false);
     }
