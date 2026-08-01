@@ -313,8 +313,16 @@ export default function App() {
               <div className="task-list">
                 {tasks.map((task) => (
                   <div key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
-                    <div className="task-info">
-                      {/* Control Interactivo de Estado */}
+                    <div className="task-header">
+                      <span className="task-title">{task.title}</span>
+                      <span className="badge">{task.category}</span>
+                    </div>
+
+                    {task.description && (
+                      <p className="task-desc">{task.description}</p>
+                    )}
+
+                    <div className="task-footer">
                       <div
                         className={`status-toggle ${task.completed ? 'completed' : ''}`}
                         onClick={() => handleToggleComplete(task)}
@@ -326,25 +334,13 @@ export default function App() {
                         </span>
                       </div>
 
-                      <div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                          <span className="task-title" style={{ fontWeight: 600, fontSize: '0.9rem' }}>{task.title}</span>
-                          <span className="badge">{task.category}</span>
-                        </div>
-                        {task.description && (
-                          <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '0.2rem' }}>
-                            {task.description}
-                          </p>
-                        )}
-                      </div>
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => handleDeleteTask(task.id)}
+                      >
+                        ELIMINAR
+                      </button>
                     </div>
-                    <button
-                      className="btn btn-danger"
-                      style={{ padding: '0.35rem 0.6rem', fontSize: '0.75rem' }}
-                      onClick={() => handleDeleteTask(task.id)}
-                    >
-                      ELIMINAR
-                    </button>
                   </div>
                 ))}
               </div>
