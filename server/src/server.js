@@ -3,6 +3,7 @@
  * API RESTful con autenticación basada en tokens y persistencia en memoria.
  */
 
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
